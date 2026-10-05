@@ -69,6 +69,11 @@ public class EnthusiaCurrencyPlugin extends JavaPlugin {
         instance = this;
 
         setupConfiguration();
+        if (!VaultBootstrap.isAvailable(Bukkit.getPluginManager())) {
+            getLogger().severe("Vault is unavailable or disabled! Disabling plugin.");
+            Bukkit.getPluginManager().disablePlugin(this);
+            return;
+        }
         if (!startStorage()) {
             return;
         }
