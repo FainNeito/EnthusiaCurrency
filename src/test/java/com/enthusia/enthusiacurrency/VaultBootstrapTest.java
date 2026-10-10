@@ -23,13 +23,14 @@ import org.bukkit.plugin.ServicesManager;
 import org.junit.jupiter.api.Test;
 
 class VaultBootstrapTest {
+    private static final String VAULT_PLUGIN = "Vault";
 
     @Test
     void rejectsStartupWhenVaultIsMissing() {
         EnthusiaCurrencyPlugin plugin = mock(EnthusiaCurrencyPlugin.class);
         PluginManager pluginManager = mock(PluginManager.class);
         ServicesManager servicesManager = mock(ServicesManager.class);
-        when(pluginManager.isPluginEnabled("Vault")).thenReturn(false);
+        when(pluginManager.isPluginEnabled(VAULT_PLUGIN)).thenReturn(false);
 
         VaultBootstrap.Result result = VaultBootstrap.register(
                 plugin,
@@ -48,8 +49,8 @@ class VaultBootstrapTest {
         EnthusiaCurrencyPlugin plugin = mock(EnthusiaCurrencyPlugin.class);
         PluginManager pluginManager = mock(PluginManager.class);
         ServicesManager servicesManager = mock(ServicesManager.class);
-        when(pluginManager.getPlugin("Vault")).thenReturn(mock(Plugin.class));
-        when(pluginManager.isPluginEnabled("Vault")).thenReturn(false);
+        when(pluginManager.getPlugin(VAULT_PLUGIN)).thenReturn(mock(Plugin.class));
+        when(pluginManager.isPluginEnabled(VAULT_PLUGIN)).thenReturn(false);
 
         VaultBootstrap.Result result = VaultBootstrap.register(
                 plugin,
@@ -68,7 +69,7 @@ class VaultBootstrapTest {
         EnthusiaCurrencyPlugin plugin = mock(EnthusiaCurrencyPlugin.class);
         PluginManager pluginManager = mock(PluginManager.class);
         ServicesManager servicesManager = mock(ServicesManager.class);
-        when(pluginManager.isPluginEnabled("Vault")).thenReturn(true);
+        when(pluginManager.isPluginEnabled(VAULT_PLUGIN)).thenReturn(true);
 
         AtomicReference<Economy> registered = new AtomicReference<>();
         doAnswer(invocation -> {
@@ -101,7 +102,7 @@ class VaultBootstrapTest {
         EnthusiaCurrencyPlugin plugin = mock(EnthusiaCurrencyPlugin.class);
         PluginManager pluginManager = mock(PluginManager.class);
         ServicesManager servicesManager = mock(ServicesManager.class);
-        when(pluginManager.isPluginEnabled("Vault")).thenReturn(true);
+        when(pluginManager.isPluginEnabled(VAULT_PLUGIN)).thenReturn(true);
 
         @SuppressWarnings("unchecked")
         RegisteredServiceProvider<Economy> registration = mock(RegisteredServiceProvider.class);
