@@ -30,7 +30,7 @@ final class VaultBootstrap {
             return Result.unavailable();
         }
 
-        TokenEconomy provider = new TokenEconomy(plugin, balanceStorage, currencyManager);
+        TokenEconomy provider = new TokenEconomy(plugin, balanceStorage);
         servicesManager.register(Economy.class, provider, plugin, ServicePriority.Highest);
         RegisteredServiceProvider<Economy> registration = servicesManager.getRegistration(Economy.class);
         boolean ownsRegistration = registration != null && registration.getProvider() == provider;
